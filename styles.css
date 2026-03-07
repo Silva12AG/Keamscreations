@@ -1,0 +1,318 @@
+body {
+
+  margin: 0;
+  font-family: Arial;
+  color: white;
+
+  background: #000;
+
+  background-image: url("keams_logo.png");
+  background-size: 350px;
+  background-repeat: repeat;
+  background-position: center;
+  background-blend-mode: overlay;
+
+}
+
+/* header */
+
+header {
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #00ffff;
+
+}
+
+.logo img {
+  width: 90px;
+}
+
+nav ul {
+
+  display: flex;
+  gap: 25px;
+  list-style: none;
+
+}
+
+nav a {
+
+  color: #00ffff;
+  text-decoration: none;
+
+}
+
+/* HERO */
+
+.hero {
+
+  height: 85vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  background: linear-gradient(270deg,
+      #000000,
+      #001a1a,
+      #000000,
+      #001a33);
+
+  background-size: 800% 800%;
+
+  animation: heroMove 14s ease infinite;
+
+}
+
+@keyframes heroMove {
+
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+
+}
+
+.hero h1 {
+
+  font-size: 40px;
+
+  color: #00ffff;
+
+  text-shadow:
+    0 0 10px #00ffff,
+    0 0 25px #00ffff;
+
+}
+
+/* BUTTON */
+
+.btn {
+
+  background: #00ffff;
+  color: black;
+  padding: 12px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 20px;
+
+}
+
+/* SECTIONS */
+
+.section {
+
+  padding: 80px 20px;
+  text-align: center;
+
+}
+
+h2 {
+
+  color: #00ffff;
+
+  text-shadow:
+    0 0 10px #00ffff,
+    0 0 20px #00ffff;
+
+}
+
+/* SERVICES */
+
+.services-grid {
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  max-width: 1000px;
+  margin: auto;
+
+}
+
+/* GLASS CARDS */
+
+.card {
+
+  background: rgba(255, 255, 255, 0.05);
+
+  backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(0, 255, 255, 0.4);
+
+  padding: 25px;
+
+  border-radius: 12px;
+
+  transition: 0.4s;
+
+}
+
+.card:hover {
+
+  transform: translateY(-10px);
+
+  box-shadow:
+    0 0 15px #00ffff,
+    0 0 30px #00ffff;
+
+}
+
+/* PRICING */
+
+.pricing-grid {
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 40px;
+  max-width: 1000px;
+  margin: auto;
+
+}
+
+.price-card {
+
+  padding: 30px;
+
+  background: rgba(255, 255, 255, 0.05);
+
+  border: 2px solid #00ffff;
+
+  border-radius: 15px;
+
+  transition: 0.4s;
+
+}
+
+.price-card:hover {
+
+  transform: translateY(-10px);
+
+  box-shadow:
+    0 0 20px #00ffff,
+    0 0 40px #00ffff,
+    0 0 70px #00ffff;
+
+}
+
+.popular {
+
+  box-shadow:
+    0 0 20px #00ffff,
+    0 0 60px #00ffff;
+
+}
+
+/* PORTFOLIO */
+
+.portfolio-slider {
+
+  max-width: 600px;
+  margin: auto;
+
+}
+
+.slide {
+
+  width: 100%;
+  border-radius: 10px;
+  display: none;
+
+}
+
+/* SLIDER BUTTONS */
+
+.slider-buttons {
+
+  margin-top: 20px;
+
+}
+
+.slider-buttons button {
+
+  padding: 10px 20px;
+  background: #00ffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+}
+
+/* CTA */
+
+.cta {
+
+  padding: 80px;
+
+  background: linear-gradient(45deg, #00ffff, #001a1a);
+
+}
+
+/* FOOTER */
+
+footer {
+
+  text-align: center;
+  padding: 30px;
+
+}
+
+/* WHATSAPP */
+
+.whatsapp {
+
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+  background: #00ffff;
+  padding: 18px;
+  border-radius: 50%;
+  font-size: 22px;
+
+}
+
+/* SCROLL REVEAL */
+
+.reveal {
+
+  opacity: 0;
+  transform: translateY(60px);
+  transition: 1s;
+
+}
+
+.reveal.active {
+
+  opacity: 1;
+  transform: translateY(0);
+
+}
+
+/* MOBILE */
+
+@media(max-width:768px) {
+
+  nav ul {
+
+    flex-direction: column;
+
+  }
+
+  .hero h1 {
+
+    font-size: 28px;
+
+  }
+
+}
