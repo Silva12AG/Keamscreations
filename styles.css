@@ -117,14 +117,19 @@ animation-delay:2s;
 
 }
 
-.hero-btn{
+/* BUTTON */
 
-opacity:0;
-animation:fadeIn 2s forwards;
-animation-delay:3s;
+.hero-btn {
+
+  background: #00ffff;
+  color: black;
+  padding: 12px 25px;
+  border-radius: 25px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 20px;
 
 }
-
 /* fade animation */
 
 @keyframes fadeIn{
@@ -347,4 +352,5 @@ footer {
   }
 
 }
+
 
