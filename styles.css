@@ -27,7 +27,7 @@ header {
 }
 
 .logo img {
-  width: 90px;
+  width: 150px;
 }
 
 nav ul {
@@ -45,68 +45,99 @@ nav a {
 
 }
 
-/* HERO */
+/* HERO SECTION */
 
-.hero {
+.hero{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+position:relative;
 
-  height: 85vh;
+background:linear-gradient(
+270deg,
+#000000,
+#001a1a,
+#000000,
+#001a33
+);
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+background-size:800% 800%;
 
-  background: linear-gradient(270deg,
-      #000000,
-      #001a1a,
-      #000000,
-      #001a33);
-
-  background-size: 800% 800%;
-
-  animation: heroMove 14s ease infinite;
-
-}
-
-@keyframes heroMove {
-
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
+animation:heroGradient 14s ease infinite;
 
 }
 
-.hero h1 {
+/* animated gradient */
 
-  font-size: 40px;
+@keyframes heroGradient{
 
-  color: #00ffff;
-
-  text-shadow:
-    0 0 10px #00ffff,
-    0 0 25px #00ffff;
+0%{background-position:0% 50%;}
+50%{background-position:100% 50%;}
+100%{background-position:0% 50%;}
 
 }
 
-/* BUTTON */
+/* glow title */
 
-.btn {
+.glow-title{
 
-  background: #00ffff;
-  color: black;
-  padding: 12px 25px;
-  border-radius: 25px;
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 20px;
+font-size:48px;
+color:#00ffff;
+
+text-shadow:
+0 0 10px #00ffff,
+0 0 20px #00ffff,
+0 0 40px #00ffff;
+
+animation:floatText 4s ease-in-out infinite;
+
+}
+
+/* floating animation */
+
+@keyframes floatText{
+
+0%{transform:translateY(0px);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0px);}
+
+}
+
+.hero-sub{
+
+font-size:20px;
+margin-top:15px;
+color:#ddd;
+
+opacity:0;
+animation:fadeIn 2s forwards;
+animation-delay:2s;
+
+}
+
+.hero-btn{
+
+opacity:0;
+animation:fadeIn 2s forwards;
+animation-delay:3s;
+
+}
+
+/* fade animation */
+
+@keyframes fadeIn{
+
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
 
 }
 
@@ -316,3 +347,4 @@ footer {
   }
 
 }
+
