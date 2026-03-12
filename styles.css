@@ -45,81 +45,60 @@ nav a {
 
 }
 
-/* HERO SECTION */
+/* HERO */
 
-.hero{
-height:100vh;
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-position:relative;
+.hero {
 
-background:linear-gradient(
-270deg,
-#000000,
-#001a1a,
-#000000,
-#001a33
-);
+  height: 85vh;
 
-background-size:800% 800%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 
-animation:heroGradient 14s ease infinite;
+  background: linear-gradient(270deg,
+      #000000,
+      #001a1a,
+      #000000,
+      #001a33);
 
-}
+  background-size: 800% 800%;
 
-/* animated gradient */
-
-@keyframes heroGradient{
-
-0%{background-position:0% 50%;}
-50%{background-position:100% 50%;}
-100%{background-position:0% 50%;}
+  animation: heroMove 14s ease infinite;
 
 }
 
-/* glow title */
+@keyframes heroMove {
 
-.glow-title{
+  0% {
+    background-position: 0% 50%;
+  }
 
-font-size:48px;
-color:#00ffff;
+  50% {
+    background-position: 100% 50%;
+  }
 
-text-shadow:
-0 0 10px #00ffff,
-0 0 20px #00ffff,
-0 0 40px #00ffff;
-
-animation:floatText 4s ease-in-out infinite;
-
-}
-
-/* floating animation */
-
-@keyframes floatText{
-
-0%{transform:translateY(0px);}
-50%{transform:translateY(-10px);}
-100%{transform:translateY(0px);}
+  100% {
+    background-position: 0% 50%;
+  }
 
 }
 
-.hero-sub{
+.hero h1 {
 
-font-size:20px;
-margin-top:15px;
-color:#ddd;
+  font-size: 40px;
 
-opacity:0;
-animation:fadeIn 2s forwards;
-animation-delay:2s;
+  color: #00ffff;
+
+  text-shadow:
+    0 0 10px #00ffff,
+    0 0 25px #00ffff;
 
 }
 
 /* BUTTON */
 
-.hero-btn {
+.btn {
 
   background: #00ffff;
   color: black;
@@ -128,21 +107,6 @@ animation-delay:2s;
   text-decoration: none;
   display: inline-block;
   margin-top: 20px;
-
-}
-/* fade animation */
-
-@keyframes fadeIn{
-
-from{
-opacity:0;
-transform:translateY(20px);
-}
-
-to{
-opacity:1;
-transform:translateY(0);
-}
 
 }
 
@@ -352,5 +316,6 @@ footer {
   }
 
 }
+
 
 
