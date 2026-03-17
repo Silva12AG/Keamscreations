@@ -1,251 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Keams Creations</title>
 
   <link rel="stylesheet" href="styles.css">
+
+  <!-- icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 </head>
 
 <body>
 
-  <header>
+<header>
 
-    <div class="logo">
-      <img src="keams_logo.png">
+  <div class="logo">
+    <img src="keams_logo.png">
+    <p class="nav-slogan">Don't chase your dream... Design it!!</p>
+  </div>
+
+  <!-- vertical nav -->
+  <nav class="side-nav">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+</header>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="container hero-content">
+    <h1>Creative Digital Solutions</h1>
+    <p>We design and develop modern websites that are visually engaging, technically sound, and built to grow your brand.</p>
+    <a href="#contact" class="btn primary-btn">Start Your Project</a>
+  </div>
+
+  <p class="hero-sub">Design.Branding.Websites.</p>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="about-section">
+  <div class="container">
+    <h2>About Us</h2>
+    <p>At Keams Creations, we combine creativity and technology to craft impactful digital experiences.</p>
+    <p><strong>"Don't chase your dream, design it!!"</strong></p>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section reveal">
+  <h2>Our Services & Pricing</h2>
+
+  <div class="services-grid">
+    <div class="card"><h3>Website Design</h3></div>
+    <div class="card"><h3>Logo Design</h3></div>
+    <div class="card"><h3>Poster & Flyers</h3></div>
+    <div class="card"><h3>Branding</h3></div>
+  </div>
+</section>
+
+<!--  NEW SERVICE SELECTOR -->
+<section class="section reveal">
+  <h2>Choose Your Services</h2>
+
+  <form class="service-form">
+    <label><input type="checkbox"> Website Design</label>
+    <label><input type="checkbox"> Logo Design</label>
+    <label><input type="checkbox"> Branding</label>
+    <label><input type="checkbox"> Posters & Flyers</label>
+
+    <button type="button" class="btn" onclick="showSelection()">Confirm Selection</button>
+  </form>
+
+  <p id="selection-output"></p>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="section reveal">
+
+  <div class="card"><h3>Flyer Design</h3><p>BWP 150</p></div>
+  <div class="card"><h3>Event Poster</h3><p>BWP 200</p></div>
+  <div class="card"><h3>Logo Design</h3><p>BWP 200</p></div>
+  <div class="card"><h3>Full Branding</h3><p>BWP 300</p></div>
+
+  <h2>Website Packages</h2>
+
+  <div class="pricing-grid">
+
+    <div class="price-card">
+      <h3>Starter</h3>
+      <h1>BWP 650</h1>
+      <ul><li>4 Pages</li></ul>
+      <a href="#contact" class="btn">Get Started</a>
     </div>
 
-    <nav>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-
-  </header>
-
-   <!-- HERO -->
-
-  <section id="home" class="hero">
-    <div class="container hero-content">
-      <h1>Creative Digital Solutions</h1>
-      <p>We design and develop modern websites that are visually engaging, technically sound, and built to grow your
-        brand.</p>
-      <a href="#contact" class="btn primary-btn">Start Your Project</a>
-    </div>
-  </section>
-      
-      <p class="hero-sub">
-        Design.Branding.Websites.
-      </p>
-      
-
-  <!-- ABOUT -->
-
-  <section id="about" class="about-section">
-    <div class="container">
-      <h2>About Us</h2>
-      <p>At Keams Creations, we combine creativity and technology to craft impactful digital experiences. Our focus is
-        on delivering clean, responsive, and performance-driven websites that help brands stand out.</p>
-      <p><strong>"Don't chase your dream, design it!!"</strong></p>
-    </div>
-  </section>
-
-  <!-- SERVICES -->
-
-  <section id="services" class="section reveal">
-
-    <h2>Our Services & Pricing</h2>
-
-    <div class="services-grid">
-
-      <div class="card">
-        <h3>Website Design</h3>
-        <p>Modern responsive websites for businesses.</p>
-      </div>
-
-      <div class="card">
-        <h3>Logo Design</h3>
-        <p>Professional brand identity creation.</p>
-      </div>
-
-      <div class="card">
-        <h3>Poster & Flyers</h3>
-        <p>Promotional graphics for marketing.</p>
-      </div>
-
-      <div class="card">
-        <h3>Branding</h3>
-        <p>Complete visual identity for companies.</p>
-      </div>
-
+    <div class="price-card popular">
+      <h3>Growth</h3>
+      <h1>BWP 950</h1>
+      <ul><li>6 Pages</li></ul>
+      <a href="#contact" class="btn">Get Started</a>
     </div>
 
-  </section>
-
-  <!-- PRICING -->
-
-  <section id="pricing" class="section reveal">
-
-    <div class="card">
-      <h3>Flyer Design</h3>
-      <p>BWP 150</p>
-    </div>
-    <div class="card">
-      <h3>Event Poster</h3>
-      <p>BWP 200</p>
-    </div>
-    <div class="card">
-      <h3>Logo Design</h3>
-      <p>BWP 200</p>
-    </div>
-    <div class="card">
-      <h3>Full Branding</h3>
-      <p>BWP 300</p>
+    <div class="price-card">
+      <h3>Professional</h3>
+      <h1>BWP 1200</h1>
+      <ul><li>8 Pages</li></ul>
+      <a href="#contact" class="btn">Get Started</a>
     </div>
 
-    <h2>Website Packages</h2>
+  </div>
 
-    <div class="pricing-grid">
+</section>
 
-      <div class="price-card">
+<!-- PORTFOLIO (unchanged images) -->
+<section id="portfolio" class="section reveal">
+  <h2>Our Portfolio</h2>
 
-        <h3>Starter</h3>
+  <div class="portfolio-slider">
+    <img class="slide" src="wedding.png">
+    <img class="slide" src="logo.png">
+    <img class="slide" src="event.png">
+    <img class="slide" src="replica.png">
+    <img class="slide" src="portfolio_4.jpg">
+    <img class="slide" src="portfolio_5.jpg">
+    <img class="slide" src="portfolio_6.jpg">
+    <img class="slide" src="flyer.jpg">
+    <img class="slide" src="shirt1.jpg">
+    <img class="slide" src="shirt2.png">
+    <img class="slide" src="windbreaker.png">
+    <img class="slide" src="gamblers.jpg">
+  </div>
 
-        <h1>BWP 650</h1>
+  <div class="slider-buttons">
+    <button onclick="prevSlide()">❮</button>
+    <button onclick="nextSlide()">❯</button>
+  </div>
+</section>
 
-        <ul>
-          <li>4 Pages</li>
-          <li>Mobile Friendly</li>
-          <li>Social Media Links</li>
-          <li>100 BWP / Month Hosting</li>
-        </ul>
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="container">
+    <h2>Contact Us</h2>
 
-        <a href="#contact" class="btn">Get Started</a>
+    <form id="contactForm" action="https://formspree.io/f/xwvnovwa" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit" class="btn primary-btn">Send Message</button>
+    </form>
 
-      </div>
+    <!--  FEEDBACK -->
+    <p id="form-feedback"></p>
 
-
-      <div class="price-card popular">
-
-        <h3>Growth</h3>
-
-        <h1>BWP 950</h1>
-
-        <ul>
-          <li>6 Pages</li>
-          <li>Contact Form</li>
-          <li>Gallery + Map</li>
-          <li>SEO Basics</li>
-          <li>150 BWP / Month Hosting</li>
-        </ul>
-
-        <a href="#contact" class="btn">Get Started</a>
-
-      </div>
-
-
-      <div class="price-card">
-
-        <h3>Professional</h3>
-
-        <h1>BWP 1200</h1>
-
-        <ul>
-          <li>8 Pages + Blog</li>
-          <li>Booking Form</li>
-          <li>SEO Optimization</li>
-          <li>250 BWP / Month Maintenance</li>
-        </ul>
-
-        <a href="#contact" class="btn">Get Started</a>
-
-      </div>
-
+    <div class="contact-socials">
+      <a href="https://www.facebook.com/keamscreations" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://wa.me/26777605357" target="_blank"><i class="fab fa-whatsapp"></i></a>
+      <a href="mailto:keamscreations@gmail.com"><i class="fas fa-envelope"></i></a>
     </div>
+  </div>
+</section>
 
-  </section>
+<footer>
+  <p>© 2025 Keams Creations</p>
+</footer>
 
-  <!-- PORTFOLIO -->
+<a href="https://wa.me/26777605357" class="whatsapp"><a href="https://www.facebook.com/keamscreations" target="_blank"><i class="fab fa-facebook">💬</a>
 
-  <section id="portfolio" class="section reveal">
-
-    <h2>Our Portfolio</h2>
-
-    <div class="portfolio-slider">
-
-      <img class="slide" src="wedding.png">
-      <img class="slide" src="logo.png">
-      <img class="slide" src="event.png">
-      <img class="slide" src="replica.png">
-      <img class="slide" src="portfolio_4.jpg">
-      <img class="slide" src="portfolio_5.jpg">
-      <img class="slide" src="portfolio_6.jpg">
-      <img class="slide" src="flyer.jpg">
-      <img class="slide" src="shirt1.jpg">
-      <img class="slide" src="shirt2.png">
-      <img class="slide" src="windbreaker.png">
-
-    </div>
-
-    <div class="slider-buttons">
-
-      <button onclick="prevSlide()">❮</button>
-      <button onclick="nextSlide()">❯</button>
-
-    </div>
-
-  </section>
-
-  <!-- CTA -->
-
-  <section class="cta reveal">
-
-    <h2>Need a Website or Design?</h2>
-
-    <a href="#contact" class="btn">Start Your Project</a>
-
-  </section>
-
-  <!-- CONTACT -->
-
-  <section id="contact" class="contact-section">
-    <div class="container">
-      <h2>Contact Us</h2>
-      <form action="https://formspree.io/f/xwvnovwa" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-        <button type="submit" class="btn primary-btn">Send Message</button>
-      </form>
-      <div class="contact-socials">
-        <a href="https://www.facebook.com/keamscreations" target="_blank"><i class="fab fa-facebook"></i></a>
-        <a href="https://wa.me/26777605357" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        <a href="mailto:keamscreations@gmail.com"><i class="fas fa-envelope"></i></a>
-      </div>
-    </div>
-
-
-    <footer>
-
-      <p>© 2025 Keams Creations</p>
-
-    </footer>
-
-    <a href="https://wa.me/26777605357" class="whatsapp">💬</a>
-
-    <script src="keams.js"></script>
-
+<script src="keams.js"></script>
 </body>
-
 </html>
-
-
