@@ -1,72 +1,23 @@
-/* PORTFOLIO SLIDER */
+// service selection
+function showSelection() {
+  let checked = document.querySelectorAll(".service-form input:checked");
+  let output = "You selected: ";
 
-let slideIndex = 0;
+  checked.forEach(c => output += c.parentElement.innerText + ", ");
 
-const slides = document.querySelectorAll(".slide");
-
-function showSlide(index) {
-
-    slides.forEach(slide => slide.style.display = "none");
-
-    slides[index].style.display = "block";
-
+  document.getElementById("selection-output").innerText = output;
 }
 
-function nextSlide() {
+// form feedback
+document.getElementById("contactForm").addEventListener("submit", function() {
+  document.getElementById("form-feedback").innerText = "Message sent successfully! ✅";
+});
 
-    slideIndex++;
-
-    if (slideIndex >= slides.length) {
-
-        slideIndex = 0;
-
+// scroll reveal
+window.addEventListener("scroll", () => {
+  document.querySelectorAll(".reveal").forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+      el.classList.add("active");
     }
-
-    showSlide(slideIndex);
-
-}
-
-function prevSlide() {
-
-    slideIndex--;
-
-    if (slideIndex < 0) {
-
-        slideIndex = slides.length - 1;
-
-    }
-
-    showSlide(slideIndex);
-
-}
-
-showSlide(slideIndex);
-
-setInterval(nextSlide, 4000);
-
-
-/* SCROLL REVEAL */
-
-function reveal() {
-
-    let reveals = document.querySelectorAll(".reveal");
-
-    for (let i = 0; i < reveals.length; i++) {
-
-        let windowHeight = window.innerHeight;
-
-        let elementTop = reveals[i].getBoundingClientRect().top;
-
-        let elementVisible = 100;
-
-        if (elementTop < windowHeight - elementVisible) {
-
-            reveals[i].classList.add("active");
-
-        }
-
-    }
-
-}
-
-window.addEventListener("scroll", reveal);
+  });
+});
