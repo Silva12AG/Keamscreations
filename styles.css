@@ -1,23 +1,31 @@
+/* 🌍 BASE */
 body {
   margin: 0;
-  font-family: Arial;
-  background: #1b1410;
-  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f3e5d8; /* light brown */
+  color: #2a1d16;
 }
 
-/* sidebar nav */
+/* 🧭 SIDEBAR NAV (dark brown) */
 .side-nav {
   position: fixed;
   right: 0;
   top: 0;
   height: 100%;
-  background: #2a1d16;
-  padding: 20px;
+  width: 200px;
+  background: #2a1d16; /* dark brown */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+  z-index: 1000;
 }
 
 .side-nav ul {
   list-style: none;
   padding: 0;
+  width: 100%;
+  text-align: center;
 }
 
 .side-nav li {
@@ -25,55 +33,154 @@ body {
 }
 
 .side-nav a {
-  color: #d2a679;
+  color: #f3e5d8;
   text-decoration: none;
-}
-
-/* slogan */
-.nav-slogan {
-  font-size: 12px;
-  opacity: 0.7;
-}
-
-/* hero */
-.hero {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: radial-gradient(circle, #3a2a1f, #1b1410);
-}
-
-/* cards */
-.card, .price-card {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(210,166,121,0.3);
-  padding: 20px;
-  border-radius: 12px;
+  font-size: 16px;
   transition: 0.3s;
 }
 
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 0 15px #d2a679;
+.side-nav a:hover {
+  color: #d2a679;
 }
 
-/* buttons */
+/* 🪶 LOGO */
+.logo img {
+  width: 120px;  /* FIXED */
+  display: block;
+  margin: 0 auto;
+}
+
+.nav-slogan {
+  text-align: center;
+  font-size: 12px;
+  margin-top: 5px;
+  color: #d2a679;
+}
+
+/* 🏠 HERO */
+.hero {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(135deg, #f3e5d8, #e6d3c3);
+}
+
+/* 📦 CONTAINER SPACING */
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* 🧊 CARDS */
+.card, .price-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  margin: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  transition: 0.3s;
+}
+
+.card:hover, .price-card:hover {
+  transform: translateY(-8px);
+}
+
+/* 📊 GRID */
+.services-grid, .pricing-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* 💰 POPULAR CARD */
+.popular {
+  border: 2px solid #d2a679;
+}
+
+/* 🔘 BUTTONS */
 .btn {
   background: #6b4226;
-  color: #fff;
+  color: white;
   padding: 10px 20px;
   border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
 }
 
-/* form */
-.service-form label {
-  display: block;
-  margin: 10px;
+.btn:hover {
+  background: #8a5a3b;
 }
 
-/* feedback */
-#form-feedback {
-  color: #d2a679;
+/* 🖼️ PORTFOLIO FIX */
+.portfolio-slider {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 10px;
+}
+
+.slide {
+  width: 220px; /* FIXED SIZE */
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* 🎛️ SLIDER BUTTONS */
+.slider-buttons {
+  text-align: center;
   margin-top: 10px;
+}
+
+.slider-buttons button {
+  padding: 10px;
+  font-size: 18px;
+}
+
+/* 📱 MODERN ICONS */
+.contact-socials a {
+  font-size: 24px; /* bigger icons */
+  margin: 10px;
+  color: #6b4226;
+  transition: 0.3s;
+}
+
+.contact-socials a:hover {
+  color: #d2a679;
+}
+
+/* 📝 FORM */
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* 💬 WHATSAPP FLOAT */
+.whatsapp {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: #25D366;
+  color: white;
+  padding: 15px;
+  border-radius: 50%;
+  font-size: 20px;
+}
+
+/* ✨ SCROLL REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.8s;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }
