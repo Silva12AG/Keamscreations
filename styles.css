@@ -6,6 +6,66 @@ body {
   color: #2a1d16;
 }
 
+/* LOADER BACKGROUND */
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #d6c2aa; /* light brown */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.8s ease, visibility 0.8s;
+}
+
+/* LOGO ANIMATION */
+.loader-logo {
+  width: 120px;
+  animation: logoIntro 2s ease forwards;
+}
+
+/* TEXT UNDER LOGO */
+.loader-text {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #3b2414;
+  opacity: 0;
+  animation: fadeText 2s ease forwards;
+  animation-delay: 1s;
+}
+
+/* LOGO KEYFRAMES */
+@keyframes logoIntro {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* TEXT FADE */
+@keyframes fadeText {
+  to {
+    opacity: 1;
+  }
+}
+
+/* FADE OUT */
+#loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
 /* 🧭 SIDEBAR NAV (dark brown) */
 .side-nav {
   position: fixed;
@@ -183,4 +243,95 @@ input, textarea {
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* FIX CONTENT WIDTH */
+body {
+  margin-right: 0;
+}
+
+/* MAIN CONTENT SHOULD NOT HIDE */
+section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 60px 20px;
+}
+
+/* HERO IMPROVEMENT */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+/* ADD EXTRA INFO UNDER HERO */
+.hero::after {
+  content: "Our Mission: Deliver clean, modern digital solutions.\A Our Vision: Become a leading creative agency.\A Goals: Build brands, empower businesses, create impact.";
+  white-space: pre-line;
+  display: block;
+  margin-top: 30px;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* SIDEBAR DESKTOP */
+header {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 220px;
+  height: 100%;
+  background: #3b2414;
+  z-index: 1000;
+}
+
+/* PUSH CONTENT LEFT ON DESKTOP */
+@media (min-width: 768px) {
+  body {
+    margin-right: 220px;
+  }
+}
+
+/* MOBILE NAV FIX */
+@media (max-width: 768px) {
+
+  header {
+    transform: translateX(100%);
+    transition: 0.3s ease;
+  }
+
+  header.active {
+    transform: translateX(0);
+  }
+
+  /* HAMBURGER BUTTON */
+  .menu-toggle {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    background: #6b3e26;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    z-index: 2000;
+    cursor: pointer;
+  }
+
+  body {
+    margin-right: 0;
+  }
+}
+
+/* FIX IMAGES */
+.logo img {
+  width: 120px;
+}
+
+.portfolio-slider img {
+  width: 90%;
+  max-width: 300px;
+  height: auto;
+  border-radius: 10px;
 }
