@@ -1,6 +1,8 @@
-import './style.css';
+const siteAsset = (path) => new URL(path.replace(/^\\/+/, ''), document.baseURI).href;
 
-const siteAsset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\\/+/, '')}`;
+document.querySelectorAll('img[src^="/brand/"], img[src^="/portfolio/"]').forEach((image) => {
+  image.src = siteAsset(image.getAttribute('src'));
+});
 
 const root = document.documentElement;
 const body = document.body;
