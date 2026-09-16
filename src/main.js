@@ -1,4 +1,12 @@
-const siteAsset = (path) => new URL(path.startsWith('/') ? path.slice(1) : path, document.baseURI).href;
+const isRawGitHubPages = window.location.hostname.endsWith('github.io') &&
+  document.querySelector('script[type="module"]')?.src.includes('/src/main.js');
+const siteAsset = (path) => {
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+  return new URL(`${isRawGitHubPages ? 'public/' : ''}${cleanPath}`, document.baseURI).href;
+};
+
+const favicon = document.querySelector('link[rel="icon"]');
+if (favicon) favicon.href = siteAsset('favicon.png');
 
 document.querySelectorAll('img[src^="/brand/"], img[src^="/portfolio/"]').forEach((image) => {
   image.src = siteAsset(image.getAttribute('src'));
