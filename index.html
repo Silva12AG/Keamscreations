@@ -1,185 +1,413 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Keams Creations</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f7f8fb" />
+    <meta name="description" content="Keams Creations — bold branding, digital design, print, merch and websites for Botswana businesses." />
+    <title>Keams Creations — Design your dream</title>
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-  <link rel="stylesheet" href="styles.css">
+    <header class="site-header" id="top">
+      <a class="brand" href="#top" aria-label="Keams Creations home">
+        <span class="brand-mark" aria-hidden="true"><img src="/brand/kc-mark.webp" alt="" /></span>
+        <span class="brand-copy"><strong>KEAMS</strong><small>CREATIONS</small></span>
+      </a>
 
-  <!-- icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+      <button class="nav-toggle icon-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-nav">
+        <span></span><span></span><span></span>
+      </button>
 
-</head>
-  
-<!-- LOGO LOADER -->
-<div id="loader">
-  <img src="keams_logo.png" alt="Keams Creations Logo" class="loader-logo">
-  <p class="loader-text">Don't chase your dream... Design it!!</p>
-</div>
-  
-<body>
-  
-<div class="menu-toggle">☰</div>
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <a href="#studio">Services</a>
+        <a href="#work">Work</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#connect">Contact</a>
+        <button class="theme-toggle icon-button" type="button" aria-label="Switch to dark mode">
+          <span class="theme-icon" aria-hidden="true">◐</span>
+        </button>
+        <button class="button button-small nav-quote" type="button" data-open-quote>Start a project</button>
+      </nav>
+    </header>
 
-  <header>
+    <main id="main">
+      <section class="hero section-shell" aria-labelledby="hero-title">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span class="pulse-dot"></span> Botswana-made creative studio</div>
+          <h1 id="hero-title">Ideas that look <em>impossible</em> to ignore.</h1>
+          <p class="hero-lead">We turn ambitious ideas into sharp brands, scroll-stopping visuals, standout merch and modern websites.</p>
+          <div class="hero-actions">
+            <button class="button" type="button" data-open-quote>Book a creative project <span aria-hidden="true">↗</span></button>
+            <a class="button button-ghost" href="#work">Explore selected work <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="trust-row" aria-label="Service benefits">
+            <span><b>01</b> Locally relevant</span>
+            <span><b>02</b> Built to stand out</span>
+            <span><b>03</b> Mobile-ready</span>
+          </div>
+        </div>
 
-  <div class="logo">
-    <img src="keams_logo.png">
-    <h1><p class="nav-slogan">Don't chase your dream... Design it!!</p></h1>
-  </div>
+        <div class="hero-art reveal" aria-label="Keams Creations visual identity showcase">
+          <div class="orb orb-one"></div>
+          <div class="orb orb-two"></div>
+          <div class="hero-grid-card glass-card">
+            <div class="art-topline"><span>KC / CREATIVE SYSTEM</span><span>BW—01</span></div>
+            <div class="official-hero-mark"><img src="/brand/kc-mark.webp" alt="Keams Creations KC monogram" /></div>
+            <div class="art-tag">DESIGN YOUR DREAM<br><strong>DON'T CHASE IT.</strong></div>
+            <div class="art-footer"><span>BRAND</span><span>DIGITAL</span><span>PRINT</span></div>
+          </div>
+          <div class="floating-chip chip-one">Bold by design ✦</div>
+          <div class="floating-chip chip-two"><span></span> Taking bookings</div>
+        </div>
+      </section>
 
-  <!-- vertical nav -->
-  <nav class="side-nav">
-    <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#pricing">Pricing</a></li>
-      <li><a href="#portfolio">Portfolio</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+      <section class="studio section-shell" id="studio" aria-labelledby="studio-title">
+        <div class="section-heading reveal">
+          <div>
+            <div class="eyebrow">What we create</div>
+            <h2 id="studio-title">One studio. Every touchpoint.</h2>
+          </div>
+          <p>From the first logo sketch to the final launch, every piece is designed to feel like one unmistakable brand.</p>
+        </div>
 
-</header>
+        <div class="need-finder reveal" role="search">
+          <div class="finder-icon" aria-hidden="true">⌕</div>
+          <label for="need-search">What does your business need?</label>
+          <input id="need-search" type="search" placeholder="Try “I need customers to notice my business”" autocomplete="off" />
+          <button class="button button-small" id="find-service" type="button">Find my match</button>
+          <div class="suggestion-list" id="suggestion-list" role="listbox" aria-label="Service suggestions"></div>
+        </div>
+        <p class="finder-result" id="finder-result" aria-live="polite"></p>
 
-<!-- HERO -->
-<section id="home" class="hero">
-  <div class="container hero-content">
-    <h1>Creative Digital Solutions</h1>
-    <p>We design and develop modern websites that are visually engaging, technically sound, and built to grow your brand.</p>
-    <a href="#contact" class="btn primary-btn">Start Your Project</a>
-  </div>
+        <div class="services-grid">
+          <article class="service-card reveal" data-service="Brand identity" data-keywords="logo brand branding identity professional startup refresh">
+            <div class="service-index">01</div>
+            <div class="service-icon" aria-hidden="true">K<span>C</span></div>
+            <h3>Brand identity</h3>
+            <p>Distinct logos, colour systems and brand assets that make the right first impression.</p>
+            <div class="service-price"><strong>From P200</strong><small>Full branding P300</small></div>
+            <button type="button" class="text-link service-select">Choose branding <span>↗</span></button>
+          </article>
+          <article class="service-card reveal" data-service="Social & event design" data-keywords="flyer poster birthday event tournament social media facebook instagram advertise promotion">
+            <div class="service-index">02</div>
+            <div class="service-icon icon-poster" aria-hidden="true"><i></i><i></i><i></i></div>
+            <h3>Social & event design</h3>
+            <p>Flyers, posters and campaign graphics built to stop the scroll and drive action.</p>
+            <div class="service-price"><strong>Flyers P150</strong><small>Event posters P200</small></div>
+            <button type="button" class="text-link service-select">Choose graphics <span>↗</span></button>
+          </article>
+          <article class="service-card reveal" data-service="Print & merchandise" data-keywords="print printing shirt tshirt t-shirt windbreaker hat bucket uniform merchandise merch menu business card">
+            <div class="service-index">03</div>
+            <div class="service-icon icon-shirt" aria-hidden="true">✦</div>
+            <h3>Print & merchandise</h3>
+            <p>Wearable branding and print pieces made to look as good in hand as they do online.</p>
+            <div class="service-price"><strong>Custom quote</strong><small>Based on item & quantity</small></div>
+            <button type="button" class="text-link service-select">Choose merch <span>↗</span></button>
+          </article>
+          <article class="service-card reveal" data-service="Website design" data-keywords="website web online booking customers internet digital page portfolio ecommerce shop responsive">
+            <div class="service-index">04</div>
+            <div class="service-icon icon-browser" aria-hidden="true"><i></i></div>
+            <h3>Website design</h3>
+            <p>Fast, responsive sites that turn curious visitors into confident customers.</p>
+            <div class="service-price"><strong>From P650</strong><small>Growth P950 • Pro P1,200</small></div>
+            <button type="button" class="text-link service-select">Choose a website <span>↗</span></button>
+          </article>
+        </div>
 
-  <p class="hero-sub">Design.Branding.Websites.</p>
-</section>
+        <div class="portfolio-block" id="work">
+          <div class="portfolio-heading reveal">
+            <div>
+              <div class="eyebrow">Official portfolio</div>
+              <h2>Real work. Real stories.</h2>
+            </div>
+            <div class="slider-controls" aria-label="Portfolio controls">
+              <button class="icon-button slider-prev" type="button" aria-label="Previous project">←</button>
+              <span class="slide-counter"><b>01</b> / <span>24</span></span>
+              <button class="icon-button slider-next" type="button" aria-label="Next project">→</button>
+            </div>
+          </div>
 
-<!-- ABOUT -->
-<section id="about" class="about-section">
-  <div class="container">
-    <h2>About Us</h2>
-    <p>At Keams Creations, we combine creativity and technology to craft impactful digital experiences.</p>
-    <p><strong>"Don't chase your dream, design it!!"</strong></p>
-  </div>
-</section>
+          <div class="portfolio-filters reveal" role="tablist" aria-label="Filter portfolio">
+            <button class="is-active" type="button" data-filter="all" aria-selected="true">All work</button>
+            <button type="button" data-filter="poster" aria-selected="false">Posters</button>
+            <button type="button" data-filter="flyer" aria-selected="false">Flyers</button>
+            <button type="button" data-filter="logo" aria-selected="false">Logos</button>
+            <button type="button" data-filter="merch" aria-selected="false">Merchandise</button>
+            <button type="button" data-filter="branding" aria-selected="false">Branding</button>
+            <button type="button" data-filter="website" aria-selected="false">Websites</button>
+          </div>
 
-<!-- SERVICES -->
-<section id="services" class="section reveal">
-  <h2>Our Services & Pricing</h2>
+          <div class="portfolio-slider reveal" tabindex="0" aria-roledescription="carousel" aria-label="Official Keams Creations portfolio">
+            <div class="portfolio-track">
+              <button class="portfolio-card" type="button" data-category="poster" data-title="Save the Date — Wedding Poster" data-src="/portfolio/poster-01.webp">
+                <img src="/portfolio/poster-01.webp" alt="Save the Date wedding poster designed by Keams Creations" loading="lazy" /><span><b>Save the Date</b><small>Poster design</small></span>
+              </button>
+              <button class="portfolio-card portrait" type="button" data-category="poster" data-title="Mr & Miss Teen Central" data-src="/portfolio/poster-02.webp">
+                <img src="/portfolio/poster-02.webp" alt="Mr and Miss Teen Central audition poster" loading="lazy" /><span><b>Teen Central</b><small>Event poster</small></span>
+              </button>
+              <button class="portfolio-card portrait" type="button" data-category="poster" data-title="Independence Day Tournament" data-src="/portfolio/poster-03.webp">
+                <img src="/portfolio/poster-03.webp" alt="Independence Day football tournament poster" loading="lazy" /><span><b>Independence Tournament</b><small>Sports campaign</small></span>
+              </button>
+              <button class="portfolio-card" type="button" data-category="poster" data-title="Pallaroad Gamblers Line-up" data-src="/portfolio/poster-04.webp">
+                <img src="/portfolio/poster-04.webp" alt="Pallaroad Gamblers football line-up graphic" loading="lazy" /><span><b>Match Line-up</b><small>Sports graphic</small></span>
+              </button>
+              <button class="portfolio-card portrait" type="button" data-category="poster" data-title="Barulaganye & Annah Wedding Invitation" data-src="/portfolio/poster-05.webp">
+                <img src="/portfolio/poster-05.webp" alt="Elegant wedding invitation poster" loading="lazy" /><span><b>Wedding Invitation</b><small>Event design</small></span>
+              </button>
+              <button class="portfolio-card portrait" type="button" data-category="poster" data-title="Makanyane FC Gear Campaign" data-src="/portfolio/poster-06.webp">
+                <img src="/portfolio/poster-06.webp" alt="Makanyane Football Club merchandise poster" loading="lazy" /><span><b>Gear Up</b><small>Product campaign</small></span>
+              </button>
 
-  <div class="services-grid">
-    <div class="card"><h3>Website Design</h3></div>
-    <div class="card"><h3>Logo Design</h3></div>
-    <div class="card"><h3>Poster & Flyers</h3></div>
-    <div class="card"><h3>Branding</h3></div>
-  </div>
-</section>
+              <button class="portfolio-card portrait" type="button" data-category="flyer" data-title="King George Birthday Flyer" data-src="/portfolio/flyer-01.webp">
+                <img src="/portfolio/flyer-01.webp" alt="King George birthday flyer" loading="lazy" /><span><b>King George</b><small>Birthday flyer</small></span>
+              </button>
+              <button class="portfolio-card" type="button" data-category="flyer" data-title="Mas Kellos Birthday Flyer" data-src="/portfolio/flyer-02.webp">
+                <img src="/portfolio/flyer-02.webp" alt="Mas Kellos birthday flyer" loading="lazy" /><span><b>Mas Kellos</b><small>Birthday flyer</small></span>
+              </button>
+              <button class="portfolio-card" type="button" data-category="flyer" data-title="May Day Football Match" data-src="/portfolio/flyer-03.webp">
+                <img src="/portfolio/flyer-03.webp" alt="May Day football tournament match flyer" loading="lazy" /><span><b>May Day Match</b><small>Match flyer</small></span>
+              </button>
+              <button class="portfolio-card portrait" type="button" data-category="flyer" data-title="Keabetswe Birthday Flyer" data-src="/portfolio/flyer-04.webp">
+                <img src="/portfolio/flyer-04.webp" alt="Elegant black and gold birthday flyer" loading="lazy" /><span><b>Birthday Editorial</b><small>Personal flyer</small></span>
+              </button>
 
-<!--  NEW SERVICE SELECTOR -->
-<section class="section reveal">
-  <h2>Choose Your Services</h2>
+              <button class="portfolio-card" type="button" data-category="logo" data-title="5H1 Alumni Identity" data-src="/portfolio/logo-01.webp">
+                <img src="/portfolio/logo-01.webp" alt="5H1 alumni logo" loading="lazy" /><span><b>5H1 Alumni</b><small>Logo design</small></span>
+              </button>
+              <button class="portfolio-card" type="button" data-category="logo" data-title="Super Team Volleyball Club" data-src="/portfolio/logo-02.webp">
+                <img src="/portfolio/logo-02.webp" alt="Super Team Volleyball Club logo" loading="lazy" /><span><b>Super Team</b><small>Club identity</small></span>
+              </button>
+              <button class="portfolio-card" type="button" data-category="logo" data-title="Pallaroad Gamblers Football Club" data-src="/portfolio/logo-03.webp">
+                <img src="/portfolio/logo-03.webp" alt="Pallaroad Gamblers Football Club logo" loading="lazy" /><span><b>Pallaroad Gamblers</b><small>Club identity</small></span>
+              </button>
 
-  <form class="service-form">
-    <label><input type="checkbox"> Website Design</label>
-    <label><input type="checkbox"> Logo Design</label>
-    <label><input type="checkbox"> Branding</label>
-    <label><input type="checkbox"> Posters & Flyers</label>
+              <button class="portfolio-card" type="button" data-category="merch" data-title="KC Graphic T-shirt" data-src="/portfolio/merch-01.webp">
+                <img src="/portfolio/merch-01.webp" alt="Keams Creations graphic t-shirt" loading="lazy" /><span><b>KC Graphic Tee</b><small>Merchandise</small></span>
+              </button>
+              <button class="portfolio-card" type="button" data-category="merch" data-title="Alpha T-shirt Collection" data-src="/portfolio/merch-02.webp">
+                <img src="/portfolio/merch-02.webp" alt="Alpha branded t-shirt mockups" loading="lazy" /><span><b>Alpha Collection</b><small>Apparel design</small></span>
+              </button>
+              <button class="portfolio-card" type="button" data-category="merch" data-title="KC Stripe T-shirt" data-src="/portfolio/merch-03.webp">
+                <img src="/portfolio/merch-03.webp" alt="Colourful Keams Creations stripe t-shirt" loading="lazy" /><span><b>KC Stripe Tee</b><small>Apparel design</small></span>
+              </button>
+              <button class="portfolio-card" type="button" data-category="merch" data-title="Neon KC T-shirt" data-src="/portfolio/merch-04.webp">
+                <img src="/portfolio/merch-04.webp" alt="Black neon KC t-shirt mockup" loading="lazy" /><span><b>Neon KC Tee</b><small>Apparel design</small></span>
+              </button>
+              <button class="portfolio-card portrait" type="button" data-category="merch" data-title="Signature Typography T-shirt" data-src="/portfolio/merch-05.webp">
+                <img src="/portfolio/merch-05.webp" alt="Signature name typography t-shirt" loading="lazy" /><span><b>Signature Tee</b><small>Custom apparel</small></span>
+              </button>
+              <button class="portfolio-card" type="button" data-category="merch" data-title="Aquarius Football Kit" data-src="/portfolio/merch-06.webp">
+                <img src="/portfolio/merch-06.webp" alt="Aquarius football kit front and back" loading="lazy" /><span><b>Aquarius Kit</b><small>Sportswear</small></span>
+              </button>
+              <button class="portfolio-card" type="button" data-category="merch" data-title="Makanyane FC Windbreaker" data-src="/portfolio/merch-07.webp">
+                <img src="/portfolio/merch-07.webp" alt="Makanyane Football Club windbreaker" loading="lazy" /><span><b>Makanyane Jacket</b><small>Sportswear</small></span>
+              </button>
+              <button class="portfolio-card portrait" type="button" data-category="merch" data-title="Pallaville Social Club Kit" data-src="/portfolio/merch-08.webp">
+                <img src="/portfolio/merch-08.webp" alt="Pallaville Social Club football kit" loading="lazy" /><span><b>Pallaville Kit</b><small>Sportswear</small></span>
+              </button>
 
-    <button type="button" class="btn" onclick="showSelection()">Confirm Selection</button>
-  </form>
+              <button class="portfolio-card" type="button" data-category="branding" data-title="Nicey Jam — Lerotse Jam" data-src="/portfolio/branding-01.webp">
+                <img src="/portfolio/branding-01.webp" alt="Nicey Jam lerotse jam label" loading="lazy" /><span><b>Nicey Jam</b><small>Packaging identity</small></span>
+              </button>
+              <button class="portfolio-card" type="button" data-category="branding" data-title="Lebone Tuition Center" data-src="/portfolio/branding-02.webp">
+                <img src="/portfolio/branding-02.webp" alt="Lebone Tuition Center advertising graphic" loading="lazy" /><span><b>Lebone Tuition</b><small>Brand campaign</small></span>
+              </button>
 
-  <p id="selection-output"></p>
-</section>
+              <a class="portfolio-card website-card" href="https://fortitudeinitiative.netlify.app" target="_blank" rel="noopener" data-category="website" aria-label="Open Fortitude Initiative website in a new tab">
+                <div class="website-thumb"><img src="/brand/kc-mark.webp" alt="" /><small>FORTITUDE INITIATIVE</small><strong>Care, closer.</strong><i>VISIT WEBSITE ↗</i></div>
+                <span><b>Fortitude Initiative</b><small>Website experience</small></span>
+              </a>
+            </div>
+            <p class="swipe-hint">Swipe or use the arrows to explore • Tap any project to enlarge</p>
+          </div>
+        </div>
 
-<!-- PRICING -->
-<section id="pricing" class="section reveal">
+        <div class="reviews-block" id="reviews">
+          <div class="reviews-heading reveal">
+            <div>
+              <div class="eyebrow">Verified client reviews</div>
+              <h2>Real work deserves real feedback.</h2>
+            </div>
+            <p>Every published review must come from a genuine Keams Creations client. New submissions are checked before they affect the public rating.</p>
+          </div>
 
-  <div class="card"><h3>Flyer Design</h3><p>BWP 150</p></div>
-  <div class="card"><h3>Event Poster</h3><p>BWP 200</p></div>
-  <div class="card"><h3>Logo Design</h3><p>BWP 200</p></div>
-  <div class="card"><h3>Full Branding</h3><p>BWP 300</p></div>
+          <div class="reviews-grid">
+            <div class="reviews-display reveal">
+              <div class="rating-summary" id="rating-summary">
+                <div><strong id="rating-average">—</strong><span>/ 5</span></div>
+                <div class="summary-stars" id="summary-stars" aria-label="No verified ratings yet">☆☆☆☆☆</div>
+                <p id="rating-count">Awaiting the first verified client rating</p>
+              </div>
+              <div class="reviews-list" id="reviews-list" aria-live="polite">
+                <div class="review-empty">
+                  <span>KC</span>
+                  <h3>No manufactured testimonials.</h3>
+                  <p>Verified client feedback will appear here after it has been submitted and confirmed.</p>
+                </div>
+              </div>
+            </div>
 
-  <h2>Website Packages</h2>
+            <form class="review-form reveal" id="review-form" novalidate>
+              <input type="hidden" name="form_type" value="Client Review Submission" />
+              <label class="honeypot" aria-hidden="true">Leave this empty<input name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+              <div class="eyebrow">Share your experience</div>
+              <h3>Review Keams Creations.</h3>
+              <p>Your contact details are used only to verify the review and are never shown publicly.</p>
+              <div class="review-form-grid">
+                <label>Your name<input required name="review_name" autocomplete="name" placeholder="Client name" /></label>
+                <label>Verification contact<input required name="verification_contact" autocomplete="email" placeholder="Email or phone" /></label>
+                <label>Service received
+                  <select required name="review_service">
+                    <option value="">Select a service</option>
+                    <option>Brand identity</option>
+                    <option>Social & event design</option>
+                    <option>Print & merchandise</option>
+                    <option>Website design</option>
+                    <option>Other creative service</option>
+                  </select>
+                </label>
+                <fieldset class="rating-field">
+                  <legend>Your rating</legend>
+                  <div class="star-rating" aria-label="Choose a rating from one to five stars">
+                    <input required type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 stars">★</label>
+                    <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars">★</label>
+                    <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars">★</label>
+                    <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars">★</label>
+                    <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star">★</label>
+                  </div>
+                </fieldset>
+                <label class="full-width">Your honest review<textarea required minlength="20" maxlength="700" name="review_text" rows="5" placeholder="What did we create for you, and how was the experience?"></textarea></label>
+                <label class="review-consent full-width"><input required type="checkbox" name="publication_consent" value="Confirmed" /><span>I confirm this is my genuine experience and allow Keams Creations to publish this review after verification.</span></label>
+              </div>
+              <p class="form-error" id="review-form-error" aria-live="polite"></p>
+              <button class="button full-button" type="submit">Submit review for verification <span>→</span></button>
+              <small class="privacy-note">Submitting does not publish the review immediately. Keams Creations approves it first.</small>
+            </form>
+          </div>
+        </div>
+      </section>
 
-  <div class="pricing-grid">
+      <section class="connect section-shell" id="connect" aria-labelledby="connect-title">
+        <div class="connect-grid">
+          <div class="connect-copy reveal">
+            <div class="eyebrow">Let's build it</div>
+            <h2 id="connect-title">Your next big idea deserves a bold first move.</h2>
+            <p>Tell us what you’re creating. We’ll turn the details into a clear project brief you can send directly through WhatsApp or email.</p>
+            <div class="availability"><span class="pulse-dot"></span><div><strong>Now taking new projects</strong><small>Mahalapye, Botswana • Available countrywide</small></div></div>
+            <button class="button" type="button" data-open-quote>Request a quote <span>↗</span></button>
+            <div class="social-row" aria-label="Social links">
+              <a class="social-link" href="https://www.facebook.com/keamscreations" target="_blank" rel="noopener" aria-label="Visit Keams Creations on Facebook">f <span>Facebook</span></a>
+              <a class="social-link" href="mailto:keamscreations@gmail.com" aria-label="Email Keams Creations">@ <span>Email</span></a>
+              <a class="social-link" href="https://wa.me/26773164945" target="_blank" rel="noopener" aria-label="Start a WhatsApp enquiry with Keams Creations">◉ <span>WhatsApp</span></a>
+            </div>
+            <small class="social-note">Official contact: +267 73 164 945 • keamscreations@gmail.com</small>
+          </div>
 
-    <div class="price-card">
-      <h3>Starter</h3>
-      <h1>BWP 650</h1>
-      <ul><li>4 Pages</li></ul>
-      <a href="#contact" class="btn">Get Started</a>
+          <div class="faq reveal">
+            <div class="eyebrow">Good to know</div>
+            <h3>Quick answers.</h3>
+            <div class="faq-list">
+              <article class="faq-item is-open">
+                <button type="button" aria-expanded="true"><span>How do we start a project?</span><i>−</i></button>
+                <div class="faq-answer"><p>Complete the short quote builder, review your brief, then send it through WhatsApp or your preferred email app.</p></div>
+              </article>
+              <article class="faq-item">
+                <button type="button" aria-expanded="false"><span>What information should I prepare?</span><i>+</i></button>
+                <div class="faq-answer"><p>Your goal, preferred service, deadline and any brand references. If you are not sure yet, we can help shape the direction.</p></div>
+              </article>
+              <article class="faq-item">
+                <button type="button" aria-expanded="false"><span>Do you work outside Mahalapye?</span><i>+</i></button>
+                <div class="faq-answer"><p>Yes. Digital projects can be handled remotely across Botswana, with delivery arrangements confirmed for physical items.</p></div>
+              </article>
+              <article class="faq-item">
+                <button type="button" aria-expanded="false"><span>How long does a website take?</span><i>+</i></button>
+                <div class="faq-answer"><p>Most websites take one to two weeks, depending on the package and how quickly the required content is supplied.</p></div>
+              </article>
+              <article class="faq-item">
+                <button type="button" aria-expanded="false"><span>Are revisions included?</span><i>+</i></button>
+                <div class="faq-answer"><p>Yes. Every package includes at least two revision rounds so the final result can be properly refined.</p></div>
+              </article>
+              <article class="faq-item">
+                <button type="button" aria-expanded="false"><span>Is a deposit required?</span><i>+</i></button>
+                <div class="faq-answer"><p>A 50% deposit starts the project, with the remaining balance due when the final work is delivered.</p></div>
+              </article>
+              <article class="faq-item">
+                <button type="button" aria-expanded="false"><span>What files will I receive?</span><i>+</i></button>
+                <div class="faq-answer"><p>Design projects can include PNG, JPG and PDF files. Website clients receive the agreed source files.</p></div>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <footer>
+          <a class="brand footer-brand" href="#top" aria-label="Back to top"><span class="brand-mark"><img src="/brand/kc-mark.webp" alt="" /></span><span class="brand-copy"><strong>KEAMS</strong><small>CREATIONS</small></span></a>
+          <p>Design your dream… Don’t chase it!!</p>
+          <span>© <span id="year"></span> Keams Creations</span>
+        </footer>
+      </section>
+    </main>
+
+    <div class="modal" id="quote-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="quote-title">
+      <div class="modal-backdrop" data-close-quote></div>
+      <div class="modal-panel" role="document">
+        <div class="modal-head">
+          <div><div class="eyebrow">Project starter</div><h2 id="quote-title">Build your quote request.</h2></div>
+          <button class="icon-button modal-close" type="button" data-close-quote aria-label="Close quote form">×</button>
+        </div>
+        <form id="quote-form" novalidate>
+          <div class="form-progress"><span></span></div>
+          <div class="form-grid">
+            <label>What should we call you?<input required name="name" autocomplete="name" placeholder="Your name" /></label>
+            <label>How should we reach you?<input required name="contact" autocomplete="tel" placeholder="Phone or email" /></label>
+            <label>What do you need?
+              <select required name="service">
+                <option value="">Select a service</option>
+                <option>Brand identity</option>
+                <option>Social & event design</option>
+                <option>Print & merchandise</option>
+                <option>Website design</option>
+                <option>Something else</option>
+              </select>
+            </label>
+            <label>When do you need it?<input required name="deadline" type="date" /></label>
+            <label class="full-width">Tell us about the idea<textarea required name="details" rows="4" placeholder="The goal, audience, style and anything else we should know…"></textarea></label>
+          </div>
+          <p class="form-error" id="form-error" aria-live="polite"></p>
+          <button class="button full-button" type="submit">Create my request <span>→</span></button>
+          <small class="privacy-note">Nothing is submitted automatically. You review the message before choosing where to send it.</small>
+        </form>
+
+        <div class="quote-ready" id="quote-ready" hidden>
+          <div class="success-mark">✓</div>
+          <h3>Your project brief is ready.</h3>
+          <p>Review it below, then choose how you want to share it.</p>
+          <pre id="quote-preview"></pre>
+          <div class="quote-actions">
+            <a class="button" id="whatsapp-link" href="#" target="_blank" rel="noopener">Continue to WhatsApp <span>↗</span></a>
+            <button class="button button-ghost" id="formspree-send" type="button">Send request directly</button>
+            <a class="button button-ghost" id="email-link" href="#">Open email draft</a>
+            <button class="text-link" id="copy-brief" type="button">Copy brief</button>
+          </div>
+          <button class="start-over" id="start-over" type="button">Edit details</button>
+        </div>
+      </div>
     </div>
 
-    <div class="price-card popular">
-      <h3>Growth</h3>
-      <h1>BWP 950</h1>
-      <ul><li>6 Pages</li></ul>
-      <a href="#contact" class="btn">Get Started</a>
+    <div class="portfolio-lightbox" id="portfolio-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="lightbox-title">
+      <div class="modal-backdrop" data-close-lightbox></div>
+      <div class="lightbox-panel">
+        <button class="icon-button lightbox-close" type="button" data-close-lightbox aria-label="Close portfolio image">×</button>
+        <button class="icon-button lightbox-prev" type="button" aria-label="Previous portfolio image">←</button>
+        <figure><img id="lightbox-image" src="" alt="" /><figcaption><span id="lightbox-category"></span><strong id="lightbox-title"></strong></figcaption></figure>
+        <button class="icon-button lightbox-next" type="button" aria-label="Next portfolio image">→</button>
+      </div>
     </div>
 
-    <div class="price-card">
-      <h3>Professional</h3>
-      <h1>BWP 1200</h1>
-      <ul><li>8 Pages</li></ul>
-      <a href="#contact" class="btn">Get Started</a>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- PORTFOLIO (unchanged images) -->
-<section id="portfolio" class="section reveal">
-  <h2>Our Portfolio</h2>
-
-  <div class="portfolio-slider">
-    <img class="slide" src="wedding.png">
-    <img class="slide" src="logo.png">
-    <img class="slide" src="event.png">
-    <img class="slide" src="replica.png">
-    <img class="slide" src="portfolio_4.jpg">
-    <img class="slide" src="portfolio_5.jpg">
-    <img class="slide" src="portfolio_6.jpg">
-    <img class="slide" src="flyer.jpg">
-    <img class="slide" src="shirt1.jpg">
-    <img class="slide" src="shirt2.png">
-    <img class="slide" src="windbreaker.png">
-    <img class="slide" src="gamblers.jpg">
-  </div>
-
-  <div class="slider-buttons">
-    <button onclick="prevSlide()">❮</button>
-    <button onclick="nextSlide()">❯</button>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="contact-section">
-  <div class="container">
-    <h2>Contact Us</h2>
-
-    <form id="contactForm" action="https://formspree.io/f/xwvnovwa" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-      <button type="submit" class="btn primary-btn">Send Message</button>
-    </form>
-
-    <!--  FEEDBACK -->
-    <p id="form-feedback"></p>
-
-    <div class="contact-socials">
-      <a href="https://www.facebook.com/keamscreations" target="_blank"><i class="fab fa-facebook"></i></a>
-      <a href="https://wa.me/26777605357" target="_blank"><i class="fab fa-whatsapp"></i></a>
-      <a href="mailto:keamscreations@gmail.com"><i class="fas fa-envelope"></i></a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <p>© 2025 Keams Creations</p>
-</footer>
-
-<script src="keams.js"></script>
-</body>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>
