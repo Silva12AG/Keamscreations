@@ -1,0 +1,15 @@
+{
+  "name": "keams-creations",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0",
+    "audit": "node scripts/static-audit.mjs && node --check src/main.js && npm run build"
+  },
+  "devDependencies": {
+    "vite": "^7.1.7"
+  }
+}
