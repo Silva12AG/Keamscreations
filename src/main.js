@@ -1,4 +1,4 @@
-const siteAsset = (path) => new URL(path.replace(/^\\/+/, ''), document.baseURI).href;
+const siteAsset = (path) => new URL(path.startsWith('/') ? path.slice(1) : path, document.baseURI).href;
 
 document.querySelectorAll('img[src^="/brand/"], img[src^="/portfolio/"]').forEach((image) => {
   image.src = siteAsset(image.getAttribute('src'));
