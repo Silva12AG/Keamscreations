@@ -1,5 +1,7 @@
 import './style.css';
 
+const siteAsset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\\/+/, '')}`;
+
 const root = document.documentElement;
 const body = document.body;
 const themeToggle = document.querySelector('.theme-toggle');
@@ -134,7 +136,7 @@ function renderLightbox(index) {
   if (!cards.length) return;
   lightboxIndex = (index + cards.length) % cards.length;
   const card = cards[lightboxIndex];
-  lightboxImage.src = card.dataset.src;
+  lightboxImage.src = siteAsset(card.dataset.src);
   lightboxImage.alt = card.querySelector('img').alt;
   lightboxTitle.textContent = card.dataset.title;
   lightboxCategory.textContent = card.dataset.category;
@@ -397,7 +399,7 @@ function createReviewCard(review) {
 
 async function loadVerifiedReviews() {
   try {
-    const response = await fetch('/data/reviews.json', { cache: 'no-store' });
+    const response = await fetch(siteAsset('data/reviews.json'), { cache: 'no-store' });
     if (!response.ok) throw new Error('Reviews unavailable');
     const data = await response.json();
     const verified = (Array.isArray(data.reviews) ? data.reviews : []).filter((review) =>
