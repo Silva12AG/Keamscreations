@@ -1,7 +1,6 @@
 -- Keams Creations dashboard schema
--- 1. Replace OWNER_EMAIL below with the single dashboard owner's email.
--- 2. Run this file in Supabase SQL Editor.
--- 3. Create that same user in Authentication > Users.
+-- 1. Run this file in Supabase SQL Editor.
+-- 2. Create keamscreations@gmail.com in Authentication > Users.
 
 create extension if not exists pgcrypto;
 
@@ -136,7 +135,7 @@ grant select, insert, update, delete on public.services to authenticated;
 grant select on public.public_reviews to anon, authenticated;
 
 insert into public.admin_users (email)
-values ('OWNER_EMAIL')
+values ('keamscreations@gmail.com')
 on conflict (email) do nothing;
 
 insert into public.services (slug, name, description, primary_price, secondary_price, sort_order)

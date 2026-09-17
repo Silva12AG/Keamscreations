@@ -49,8 +49,8 @@ The dashboard has no public registration. Supabase Authentication and database r
 ### Activate the secure backend
 
 1. Create a Supabase project.
-2. In Supabase SQL Editor, open `supabase/schema.sql`, replace `OWNER_EMAIL` with the owner's login email and run the script.
-3. In Supabase Authentication, create one user with that same email and a strong password. Disable public sign-ups in the project's Authentication settings.
+2. In Supabase SQL Editor, open `supabase/schema.sql` and run the script. It permits only `keamscreations@gmail.com` as the dashboard owner.
+3. In Supabase Authentication, create `keamscreations@gmail.com` with a strong password. Disable public sign-ups in the project's Authentication settings.
 4. From Supabase Project Settings → API, copy the Project URL and public anon key into `kc-config.js`.
 5. Run `npm run audit`, then merge and deploy the dashboard branch.
 

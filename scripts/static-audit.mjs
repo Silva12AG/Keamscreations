@@ -40,7 +40,7 @@ const checks = [
   [adminJavascript.includes("from('services')"), 'Dashboard service management is missing'],
   [dashboardSchema.includes('enable row level security'), 'Dashboard database row-level security is missing'],
   [dashboardSchema.includes('create or replace view public.public_reviews'), 'Safe public review view is missing'],
-  [dashboardSchema.includes("values ('OWNER_EMAIL')"), 'Database setup must retain the owner email placeholder'],
+  [dashboardSchema.includes("values ('keamscreations@gmail.com')"), 'Database setup must restrict access to the selected owner email'],
   [backendConfig.includes("KC_SUPABASE_URL = ''") && backendConfig.includes("KC_SUPABASE_ANON_KEY = ''"), 'Repository must not contain configured backend credentials before owner setup'],
 ];
 
