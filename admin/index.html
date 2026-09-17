@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f7fb" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>KC Control Room — Keams Creations</title>
+    <link rel="icon" href="../public/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="./admin.css" />
+    <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.116.0/dist/umd/supabase.min.js"></script>
+  </head>
+  <body>
+    <div class="admin-orb admin-orb-one"></div>
+    <div class="admin-orb admin-orb-two"></div>
+
+    <main class="auth-shell" id="auth-view">
+      <section class="auth-card glass-card" aria-labelledby="login-title">
+        <a class="admin-brand" href="../index.html" aria-label="Return to Keams Creations website">
+          <img src="../public/brand/kc-mark.webp" alt="" />
+          <span><strong>KEAMS</strong><small>CONTROL ROOM</small></span>
+        </a>
+        <div class="auth-copy">
+          <span class="eyebrow"><i></i> Owner access</span>
+          <h1 id="login-title">Run the studio from one place.</h1>
+          <p>Approve genuine reviews, organise enquiries and keep service prices current.</p>
+        </div>
+
+        <div class="setup-notice" id="setup-notice" hidden>
+          <strong>Secure backend connection required</strong>
+          <p>The dashboard UI is ready. Add the Supabase project URL and publishable key in <code>kc-config.js</code> to enable owner login.</p>
+        </div>
+
+        <form id="login-form" novalidate>
+          <label>Email address
+            <input type="email" name="email" autocomplete="username" required placeholder="Owner email" />
+          </label>
+          <label>Password
+            <input type="password" name="password" autocomplete="current-password" required minlength="8" placeholder="••••••••" />
+          </label>
+          <p class="form-message" id="login-message" aria-live="polite"></p>
+          <button class="primary-button" type="submit">Open dashboard <span>→</span></button>
+        </form>
+        <small class="security-note">No public sign-up. Only the approved KC owner account can access business data.</small>
+      </section>
+    </main>
+
+    <div class="dashboard-shell" id="dashboard-view" hidden>
+      <aside class="sidebar" id="sidebar">
+        <a class="admin-brand" href="../index.html" aria-label="Open Keams Creations website">
+          <img src="../public/brand/kc-mark.webp" alt="" />
+          <span><strong>KEAMS</strong><small>CONTROL ROOM</small></span>
+        </a>
+        <nav aria-label="Dashboard navigation">
+          <button class="nav-item is-active" type="button" data-view="overview"><span>⌂</span> Overview</button>
+          <button class="nav-item" type="button" data-view="reviews"><span>★</span> Reviews <b id="pending-review-badge">0</b></button>
+          <button class="nav-item" type="button" data-view="bookings"><span>↗</span> Bookings <b id="new-booking-badge">0</b></button>
+          <button class="nav-item" type="button" data-view="services"><span>◇</span> Services</button>
+        </nav>
+        <div class="sidebar-footer">
+          <a href="../index.html" target="_blank" rel="noopener">View public website ↗</a>
+          <button type="button" id="sign-out">Sign out</button>
+        </div>
+      </aside>
+
+      <main class="dashboard-main">
+        <header class="dashboard-header">
+          <button class="mobile-menu" id="mobile-menu" type="button" aria-label="Open dashboard menu" aria-expanded="false">☰</button>
+          <div>
+            <span class="eyebrow"><i></i> Live business workspace</span>
+            <h1 id="view-title">Overview</h1>
+          </div>
+          <div class="owner-chip"><span>KC</span><div><strong id="owner-name">Studio owner</strong><small id="owner-email"></small></div></div>
+        </header>
+
+        <p class="dashboard-alert" id="dashboard-alert" aria-live="polite"></p>
+
+        <section class="dashboard-view is-active" data-panel="overview">
+          <div class="welcome-card glass-card">
+            <div><span class="eyebrow">Today at KC</span><h2>Everything important, without the noise.</h2><p>Review new feedback, follow up on enquiries and keep the public pricing accurate.</p></div>
+            <button class="secondary-button" type="button" id="refresh-dashboard">Refresh data ↻</button>
+          </div>
+          <div class="stats-grid">
+            <article class="stat-card"><span>Pending reviews</span><strong id="stat-pending-reviews">0</strong><small>Waiting for your decision</small></article>
+            <article class="stat-card"><span>Verified rating</span><strong id="stat-rating">—</strong><small id="stat-review-total">No published reviews</small></article>
+            <article class="stat-card"><span>New enquiries</span><strong id="stat-new-bookings">0</strong><small>Need a response</small></article>
+            <article class="stat-card"><span>Active services</span><strong id="stat-services">0</strong><small>Visible on the website</small></article>
+          </div>
+          <div class="overview-grid">
+            <article class="panel-card">
+              <div class="panel-heading"><div><span class="eyebrow">Review queue</span><h2>Needs approval</h2></div><button type="button" data-jump="reviews">See all →</button></div>
+              <div class="mini-list" id="overview-reviews"></div>
+            </article>
+            <article class="panel-card">
+              <div class="panel-heading"><div><span class="eyebrow">Booking queue</span><h2>Recent enquiries</h2></div><button type="button" data-jump="bookings">See all →</button></div>
+              <div class="mini-list" id="overview-bookings"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="dashboard-view" data-panel="reviews" hidden>
+          <div class="section-toolbar">
+            <div><p>Only approved reviews appear publicly and count toward the rating.</p></div>
+            <div class="filter-group" role="group" aria-label="Filter reviews">
+              <button class="is-active" type="button" data-review-filter="pending">Pending</button>
+              <button type="button" data-review-filter="approved">Approved</button>
+              <button type="button" data-review-filter="rejected">Rejected</button>
+              <button type="button" data-review-filter="all">All</button>
+            </div>
+          </div>
+          <div class="data-list" id="reviews-list-admin"></div>
+        </section>
+
+        <section class="dashboard-view" data-panel="bookings" hidden>
+          <div class="section-toolbar">
+            <div><p>Track every enquiry from first contact to completed project.</p></div>
+            <label class="compact-select">Status
+              <select id="booking-filter">
+                <option value="all">All bookings</option>
+                <option value="new">New</option>
+                <option value="contacted">Contacted</option>
+                <option value="quoted">Quoted</option>
+                <option value="booked">Booked</option>
+                <option value="completed">Completed</option>
+                <option value="closed">Closed</option>
+              </select>
+            </label>
+          </div>
+          <div class="data-list" id="bookings-list-admin"></div>
+        </section>
+
+        <section class="dashboard-view" data-panel="services" hidden>
+          <div class="section-toolbar">
+            <div><p>Edit the service text and prices shown on the public website.</p></div>
+            <button class="primary-button small" id="save-services" type="button">Save all changes</button>
+          </div>
+          <div class="services-admin-grid" id="services-list-admin"></div>
+        </section>
+      </main>
+    </div>
+
+    <div class="confirm-dialog" id="confirm-dialog" hidden role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+      <div class="confirm-backdrop" data-close-confirm></div>
+      <div class="confirm-card">
+        <span class="eyebrow">Confirm action</span>
+        <h2 id="confirm-title">Are you sure?</h2>
+        <p id="confirm-message"></p>
+        <div><button class="secondary-button" type="button" data-close-confirm>Cancel</button><button class="danger-button" type="button" id="confirm-action">Continue</button></div>
+      </div>
+    </div>
+
+    <script type="module" src="./admin.js"></script>
+  </body>
+</html>

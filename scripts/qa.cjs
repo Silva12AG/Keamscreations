@@ -48,6 +48,19 @@ async function run() {
 
     results.push({ profile: profile.name, overflow, consoleErrors: errors.length });
     await page.close();
+
+    const adminPage = await browser.newPage(profile);
+    const adminErrors = [];
+    adminPage.on('console', (message) => { if (message.type() === 'error') adminErrors.push(message.text()); });
+    adminPage.on('pageerror', (error) => adminErrors.push(error.message));
+    await adminPage.goto('http://127.0.0.1:4173/admin/', { waitUntil: 'networkidle' });
+    await adminPage.screenshot({ path: `qa-admin-${profile.name}.png`, fullPage: true });
+    const adminOverflow = await adminPage.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    const setupVisible = await adminPage.locator('#setup-notice').isVisible();
+    const loginDisabled = await adminPage.locator('#login-form input[name="email"]').isDisabled();
+    if (!setupVisible || !loginDisabled) throw new Error(`${profile.name}: unconfigured dashboard did not lock owner login`);
+    results.push({ profile: `admin-${profile.name}`, overflow: adminOverflow, consoleErrors: adminErrors.length });
+    await adminPage.close();
   }
   await browser.close();
   console.log(JSON.stringify(results, null, 2));

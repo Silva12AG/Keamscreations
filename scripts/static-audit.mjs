@@ -3,6 +3,10 @@ import { resolve } from 'node:path';
 
 const html = readFileSync(resolve('index.html'), 'utf8');
 const javascript = readFileSync(resolve('src/main.js'), 'utf8');
+const adminHtml = readFileSync(resolve('admin/index.html'), 'utf8');
+const adminJavascript = readFileSync(resolve('admin/admin.js'), 'utf8');
+const dashboardSchema = readFileSync(resolve('supabase/schema.sql'), 'utf8');
+const backendConfig = readFileSync(resolve('kc-config.js'), 'utf8');
 const reviewData = JSON.parse(readFileSync(resolve('public/data/reviews.json'), 'utf8'));
 const ids = [...html.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]);
 const duplicateIds = ids.filter((id, index) => ids.indexOf(id) !== index);
@@ -23,6 +27,24 @@ const checks = [
   [html.includes('id="review-form"'), 'Verified review submission form is missing'],
   [Array.isArray(reviewData.reviews), 'Review data must contain a reviews array'],
   [(reviewData.reviews || []).every((review) => review.verified === true), 'Unverified reviews must never be present in the published review data'],
+  [javascript.includes("from '../kc-config.js'"), 'Public website is not connected to the dashboard configuration'],
+  [javascript.includes("kcApi('bookings'"), 'Booking submissions are not connected to the dashboard'],
+  [javascript.includes("kcApi('reviews'"), 'Review submissions are not connected to the dashboard'],
+  [javascript.includes("kcApi('public_reviews"), 'Approved public reviews are not loaded from the secure review view'],
+  [adminHtml.includes('name="robots" content="noindex, nofollow"'), 'Dashboard must be excluded from search indexing'],
+  [adminHtml.includes('id="login-form"'), 'Dashboard owner login is missing'],
+  [adminJavascript.includes("signInWithPassword"), 'Dashboard password login is missing'],
+  [adminJavascript.includes("rpc('is_kc_admin')"), 'Dashboard owner authorization check is missing'],
+  [adminJavascript.includes("from('reviews')"), 'Dashboard review management is missing'],
+  [adminJavascript.includes("from('bookings')"), 'Dashboard booking management is missing'],
+  [adminJavascript.includes("from('services')"), 'Dashboard service management is missing'],
+  [dashboardSchema.includes('enable row level security'), 'Dashboard database row-level security is missing'],
+  [dashboardSchema.includes('create or replace view public.public_reviews'), 'Safe public review view is missing'],
+  [dashboardSchema.includes("values ('keamscreations@gmail.com')"), 'Database setup must restrict access to the selected owner email'],
+  [backendConfig.includes("KC_SUPABASE_URL = 'https://avawxzfjocqibntihgrf.supabase.co'"), 'Configured Supabase Project URL is missing or incorrect'],
+  [/KC_SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_[^']+'/.test(backendConfig), 'Configured Supabase publishable key is missing or uses the wrong format'],
+  [!/(?:sb_secret_|service_role)/i.test(backendConfig), 'A private Supabase key must never be committed to the repository'],
+  [!javascript.includes('Authorization: `Bearer ${KC_SUPABASE_PUBLISHABLE_KEY}`'), 'Publishable keys should be sent as apikey headers, not bearer credentials'],
 ];
 
 const failures = checks.filter(([passed]) => !passed).map(([, message]) => message);
@@ -31,4 +53,4 @@ if (failures.length) {
   process.exit(1);
 }
 
-console.log(`Static audit passed: ${portfolioCount} portfolio items, ${new Set(localAssets).size} verified assets, official booking destinations present.`);
+console.log(`Static audit passed: ${portfolioCount} portfolio items, ${new Set(localAssets).size} verified assets, owner dashboard safeguards present.`);
