@@ -1,3 +1,5 @@
+import { KC_SUPABASE_URL, KC_SUPABASE_ANON_KEY, kcBackendConfigured } from '../kc-config.js';
+
 const isRawGitHubPages = window.location.hostname.endsWith('github.io') &&
   document.querySelector('script[type="module"]')?.src.includes('/src/main.js');
 const siteAsset = (path) => {
@@ -7,6 +9,25 @@ const siteAsset = (path) => {
 
 const favicon = document.querySelector('link[rel="icon"]');
 if (favicon) favicon.href = siteAsset('favicon.png');
+
+async function kcApi(path, options = {}) {
+  const response = await fetch(`${KC_SUPABASE_URL}/rest/v1/${path}`, {
+    ...options,
+    headers: {
+      apikey: KC_SUPABASE_ANON_KEY,
+      Authorization: `Bearer ${KC_SUPABASE_ANON_KEY}`,
+      'Content-Type': 'application/json',
+      ...options.headers,
+    },
+  });
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({}));
+    throw new Error(error.message || 'The KC service is temporarily unavailable.');
+  }
+  if (response.status === 204) return null;
+  const text = await response.text();
+  return text ? JSON.parse(text) : null;
+}
 
 document.querySelectorAll('img[src^="/brand/"], img[src^="/portfolio/"]').forEach((image) => {
   image.src = siteAsset(image.getAttribute('src'));
@@ -196,6 +217,44 @@ const searchButton = document.querySelector('#find-service');
 const suggestionList = document.querySelector('#suggestion-list');
 const finderResult = document.querySelector('#finder-result');
 
+function replaceServiceOptions(select, services, fallbackLabel) {
+  const selected = select.value;
+  const placeholder = document.createElement('option');
+  placeholder.value = '';
+  placeholder.textContent = 'Select a service';
+  const fallback = document.createElement('option');
+  fallback.textContent = fallbackLabel;
+  select.replaceChildren(placeholder, ...services.map((service) => {
+    const option = document.createElement('option');
+    option.textContent = service.name;
+    return option;
+  }), fallback);
+  if ([...select.options].some((option) => option.value === selected)) select.value = selected;
+}
+
+async function loadManagedServices() {
+  if (!kcBackendConfigured) return;
+  try {
+    const services = await kcApi('services?select=slug,name,description,primary_price,secondary_price&active=eq.true&order=sort_order.asc');
+    if (!Array.isArray(services)) return;
+    const bySlug = new Map(services.map((service) => [service.slug, service]));
+    serviceCards.forEach((card) => {
+      const service = bySlug.get(card.dataset.serviceSlug);
+      card.hidden = !service;
+      if (!service) return;
+      card.dataset.service = service.name;
+      card.querySelector('h3').textContent = service.name;
+      card.querySelector(':scope > p').textContent = service.description;
+      card.querySelector('.service-price strong').textContent = service.primary_price;
+      card.querySelector('.service-price small').textContent = service.secondary_price;
+    });
+    replaceServiceOptions(serviceSelect, services, 'Something else');
+    replaceServiceOptions(document.querySelector('[name="review_service"]'), services, 'Other creative service');
+  } catch (error) {
+    console.warn('Managed service details unavailable; using the published website details.', error);
+  }
+}
+
 function matchesFor(query) {
   const tokens = query.toLowerCase().split(/\s+/).filter((token) => token.length > 2);
   return serviceCards.map((card) => {
@@ -318,18 +377,35 @@ directSendButton.addEventListener('click', async () => {
   if (!currentQuoteData) return;
   directSendButton.disabled = true;
   directSendButton.textContent = 'Sending…';
-  const formData = new FormData();
-  currentQuoteData.forEach((value, key) => formData.append(key, value));
-  formData.append('_subject', `KC website quote — ${currentQuoteData.get('service')}`);
   try {
-    const response = await fetch('https://formspree.io/f/xwvnovwa', {
-      method: 'POST',
-      body: formData,
-      headers: { Accept: 'application/json' },
-    });
-    if (!response.ok) throw new Error('Request failed');
-    directSendButton.textContent = 'Request sent ✓';
-    showToast('Your request was sent to Keams Creations');
+    if (kcBackendConfigured) {
+      await kcApi('bookings', {
+        method: 'POST',
+        headers: { Prefer: 'return=minimal' },
+        body: JSON.stringify({
+          name: currentQuoteData.get('name'),
+          contact: currentQuoteData.get('contact'),
+          service: currentQuoteData.get('service'),
+          deadline: currentQuoteData.get('deadline'),
+          details: currentQuoteData.get('details'),
+          status: 'new',
+        }),
+      });
+      directSendButton.textContent = 'Request saved ✓';
+      showToast('Your request was added to the KC booking dashboard');
+    } else {
+      const formData = new FormData();
+      currentQuoteData.forEach((value, key) => formData.append(key, value));
+      formData.append('_subject', `KC website quote — ${currentQuoteData.get('service')}`);
+      const response = await fetch('https://formspree.io/f/xwvnovwa', {
+        method: 'POST',
+        body: formData,
+        headers: { Accept: 'application/json' },
+      });
+      if (!response.ok) throw new Error('Request failed');
+      directSendButton.textContent = 'Request sent ✓';
+      showToast('Your request was sent to Keams Creations');
+    }
   } catch {
     directSendButton.disabled = false;
     directSendButton.textContent = 'Try direct send again';
@@ -409,10 +485,29 @@ function createReviewCard(review) {
 
 async function loadVerifiedReviews() {
   try {
-    const response = await fetch(siteAsset('data/reviews.json'), { cache: 'no-store' });
-    if (!response.ok) throw new Error('Reviews unavailable');
-    const data = await response.json();
-    const verified = (Array.isArray(data.reviews) ? data.reviews : []).filter((review) =>
+    let publishedReviews;
+    if (kcBackendConfigured) {
+      try {
+        const rows = await kcApi('public_reviews?select=id,name,service,rating,review_text,published_at&order=published_at.desc');
+        publishedReviews = (Array.isArray(rows) ? rows : []).map((review) => ({
+          name: review.name,
+          service: review.service,
+          rating: review.rating,
+          review: review.review_text,
+          date: (review.published_at || new Date().toISOString()).slice(0, 10),
+          verified: true,
+        }));
+      } catch (error) {
+        console.warn('Live reviews unavailable; using the published review backup.', error);
+      }
+    }
+    if (!publishedReviews) {
+      const response = await fetch(siteAsset('data/reviews.json'), { cache: 'no-store' });
+      if (!response.ok) throw new Error('Reviews unavailable');
+      const data = await response.json();
+      publishedReviews = Array.isArray(data.reviews) ? data.reviews : [];
+    }
+    const verified = publishedReviews.filter((review) =>
       review.verified === true &&
       typeof review.name === 'string' &&
       typeof review.service === 'string' &&
@@ -448,14 +543,30 @@ reviewForm.addEventListener('submit', async (event) => {
   submitButton.disabled = true;
   submitButton.textContent = 'Submitting for verification…';
   const data = new FormData(reviewForm);
-  data.append('_subject', `KC client review — ${data.get('rating')} stars`);
   try {
-    const response = await fetch('https://formspree.io/f/xwvnovwa', {
-      method: 'POST',
-      body: data,
-      headers: { Accept: 'application/json' },
-    });
-    if (!response.ok) throw new Error('Review submission failed');
+    if (kcBackendConfigured) {
+      await kcApi('reviews', {
+        method: 'POST',
+        headers: { Prefer: 'return=minimal' },
+        body: JSON.stringify({
+          name: data.get('review_name'),
+          verification_contact: data.get('verification_contact'),
+          service: data.get('review_service'),
+          rating: Number(data.get('rating')),
+          review_text: data.get('review_text'),
+          publication_consent: data.get('publication_consent') === 'Confirmed',
+          status: 'pending',
+        }),
+      });
+    } else {
+      data.append('_subject', `KC client review — ${data.get('rating')} stars`);
+      const response = await fetch('https://formspree.io/f/xwvnovwa', {
+        method: 'POST',
+        body: data,
+        headers: { Accept: 'application/json' },
+      });
+      if (!response.ok) throw new Error('Review submission failed');
+    }
     reviewForm.classList.add('is-sent');
     const success = document.createElement('div');
     success.className = 'review-success';
@@ -468,6 +579,7 @@ reviewForm.addEventListener('submit', async (event) => {
   }
 });
 
+loadManagedServices();
 loadVerifiedReviews();
 
 document.querySelector('#year').textContent = new Date().getFullYear();

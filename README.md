@@ -24,9 +24,9 @@ Create a production build with `npm run build`. The finished static website is g
 - WhatsApp: `+267 73 164 945`
 - Email: `keamscreations@gmail.com`
 - Facebook: `https://www.facebook.com/keamscreations`
-- Existing Formspree endpoint retained as the direct form option.
+- Existing Formspree endpoint remains the direct form option until the dashboard backend is activated.
 - The quote builder validates the project details, creates a reviewable brief and opens an addressed WhatsApp or email draft.
-- Nothing is submitted automatically. The visitor reviews the brief and explicitly chooses WhatsApp, direct form submission or email.
+- The visitor reviews the brief and explicitly chooses WhatsApp, direct submission or email.
 
 ## Portfolio order
 
@@ -36,12 +36,35 @@ The Fortitude Initiative website is linked as the website project.
 
 Existing listed prices, deposit terms, revision policy, turnaround guidance and file-delivery information were retained from the running site.
 
+## Owner dashboard
+
+The private-access dashboard is available at `/admin/` and manages:
+
+- Booking and enquiry status from new request through completion
+- Review verification, approval and rejection
+- Public service descriptions, visibility and pricing
+
+The dashboard has no public registration. Supabase Authentication and database row-level security restrict all business records to the email listed in `admin_users`. The dashboard page itself uses `noindex`; its data remains protected even if someone discovers the URL.
+
+### Activate the secure backend
+
+1. Create a Supabase project.
+2. In Supabase SQL Editor, open `supabase/schema.sql`, replace `OWNER_EMAIL` with the owner's login email and run the script.
+3. In Supabase Authentication, create one user with that same email and a strong password. Disable public sign-ups in the project's Authentication settings.
+4. From Supabase Project Settings → API, copy the Project URL and public anon key into `kc-config.js`.
+5. Run `npm run audit`, then merge and deploy the dashboard branch.
+
+The public anon key is designed for browser use; never add the Supabase service-role key to this repository. The row-level security policies in `supabase/schema.sql` are the access boundary.
+
+Until these steps are completed, the public website keeps using Formspree and `public/data/reviews.json`, and the dashboard login stays disabled.
+
 ## Verified reviews and ratings
 
-- The public rating is calculated only from entries in `public/data/reviews.json` where `verified` is exactly `true`.
+- Before backend activation, the public rating is calculated only from entries in `public/data/reviews.json` where `verified` is exactly `true`.
+- After activation, customers submit reviews into a pending queue. Only owner-approved reviews are exposed through the safe `public_reviews` view and included in the rating.
 - The site begins with zero ratings rather than displaying invented testimonials.
 - New review submissions include a 1–5 star rating, service, written feedback, verification contact and publication consent.
-- Submissions go to the existing Formspree inbox for manual verification and do not appear automatically.
+- Submissions never appear automatically. They remain pending until the owner approves them in the dashboard.
 - An approved review entry uses this structure:
 
 ```json
@@ -57,8 +80,6 @@ Existing listed prices, deposit terms, revision policy, turnaround guidance and 
 
 Add only reviews backed by a genuine submission, client confirmation, screenshot or public source.
 
-## Pending before publishing
+## Deployment
 
-- Add the user's GitHub repository remote after its URL is provided.
-
-The supplied URL was missing the `s` in “keams.” The working existing site is `https://keamscreations.netlify.app`; its Facebook profile and Formspree endpoint were recovered and preserved.
+Pushing to `main` runs the audit and deploys the production build to GitHub Pages. Dashboard development should remain on a feature branch until Supabase is configured and the owner login has been tested.
