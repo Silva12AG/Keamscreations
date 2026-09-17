@@ -51,10 +51,10 @@ The dashboard has no public registration. Supabase Authentication and database r
 1. Create a Supabase project.
 2. In Supabase SQL Editor, open `supabase/schema.sql` and run the script. It permits only `keamscreations@gmail.com` as the dashboard owner.
 3. In Supabase Authentication, create `keamscreations@gmail.com` with a strong password. Disable public sign-ups in the project's Authentication settings.
-4. From Supabase Project Settings → API, copy the Project URL and public anon key into `kc-config.js`.
+4. From the Supabase Connect dialog or Settings → API Keys, copy the Project URL and publishable key into `kc-config.js`.
 5. Run `npm run audit`, then merge and deploy the dashboard branch.
 
-The public anon key is designed for browser use; never add the Supabase service-role key to this repository. The row-level security policies in `supabase/schema.sql` are the access boundary.
+The publishable key is designed for browser use; never add a Supabase secret or legacy service-role key to this repository. The row-level security policies in `supabase/schema.sql` are the access boundary.
 
 Until these steps are completed, the public website keeps using Formspree and `public/data/reviews.json`, and the dashboard login stays disabled.
 

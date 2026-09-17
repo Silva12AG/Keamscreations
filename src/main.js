@@ -1,4 +1,4 @@
-import { KC_SUPABASE_URL, KC_SUPABASE_ANON_KEY, kcBackendConfigured } from '../kc-config.js';
+import { KC_SUPABASE_URL, KC_SUPABASE_PUBLISHABLE_KEY, kcBackendConfigured } from '../kc-config.js';
 
 const isRawGitHubPages = window.location.hostname.endsWith('github.io') &&
   document.querySelector('script[type="module"]')?.src.includes('/src/main.js');
@@ -14,8 +14,8 @@ async function kcApi(path, options = {}) {
   const response = await fetch(`${KC_SUPABASE_URL}/rest/v1/${path}`, {
     ...options,
     headers: {
-      apikey: KC_SUPABASE_ANON_KEY,
-      Authorization: `Bearer ${KC_SUPABASE_ANON_KEY}`,
+      apikey: KC_SUPABASE_PUBLISHABLE_KEY,
+      Authorization: `Bearer ${KC_SUPABASE_PUBLISHABLE_KEY}`,
       'Content-Type': 'application/json',
       ...options.headers,
     },

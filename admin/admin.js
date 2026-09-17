@@ -1,4 +1,4 @@
-import { KC_SUPABASE_URL, KC_SUPABASE_ANON_KEY, kcBackendConfigured } from '../kc-config.js';
+import { KC_SUPABASE_URL, KC_SUPABASE_PUBLISHABLE_KEY, kcBackendConfigured } from '../kc-config.js';
 
 const state = {
   client: null,
@@ -406,7 +406,7 @@ async function initialize() {
     return;
   }
 
-  state.client = window.supabase.createClient(KC_SUPABASE_URL, KC_SUPABASE_ANON_KEY, {
+  state.client = window.supabase.createClient(KC_SUPABASE_URL, KC_SUPABASE_PUBLISHABLE_KEY, {
     auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false },
   });
   const { data } = await state.client.auth.getSession();

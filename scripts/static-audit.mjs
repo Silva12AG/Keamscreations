@@ -41,7 +41,7 @@ const checks = [
   [dashboardSchema.includes('enable row level security'), 'Dashboard database row-level security is missing'],
   [dashboardSchema.includes('create or replace view public.public_reviews'), 'Safe public review view is missing'],
   [dashboardSchema.includes("values ('keamscreations@gmail.com')"), 'Database setup must restrict access to the selected owner email'],
-  [backendConfig.includes("KC_SUPABASE_URL = ''") && backendConfig.includes("KC_SUPABASE_ANON_KEY = ''"), 'Repository must not contain configured backend credentials before owner setup'],
+  [backendConfig.includes("KC_SUPABASE_URL = ''") && backendConfig.includes("KC_SUPABASE_PUBLISHABLE_KEY = ''"), 'Repository must not contain configured backend credentials before owner setup'],
 ];
 
 const failures = checks.filter(([passed]) => !passed).map(([, message]) => message);
