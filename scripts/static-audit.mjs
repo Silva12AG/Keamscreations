@@ -44,6 +44,7 @@ const checks = [
   [backendConfig.includes("KC_SUPABASE_URL = 'https://avawxzfjocqibntihgrf.supabase.co'"), 'Configured Supabase Project URL is missing or incorrect'],
   [/KC_SUPABASE_PUBLISHABLE_KEY = '(?:|sb_publishable_[^']+)'/.test(backendConfig), 'Supabase publishable key must be blank or use the browser-safe sb_publishable_ format'],
   [!/(?:sb_secret_|service_role)/i.test(backendConfig), 'A private Supabase key must never be committed to the repository'],
+  [!javascript.includes('Authorization: `Bearer ${KC_SUPABASE_PUBLISHABLE_KEY}`'), 'Publishable keys should be sent as apikey headers, not bearer credentials'],
 ];
 
 const failures = checks.filter(([passed]) => !passed).map(([, message]) => message);

@@ -15,7 +15,6 @@ async function kcApi(path, options = {}) {
     ...options,
     headers: {
       apikey: KC_SUPABASE_PUBLISHABLE_KEY,
-      Authorization: `Bearer ${KC_SUPABASE_PUBLISHABLE_KEY}`,
       'Content-Type': 'application/json',
       ...options.headers,
     },
